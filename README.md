@@ -109,7 +109,7 @@ codigo propio-Potenciometro
 
 En Thonny añado “plotter” a la visualización
 
-![](C:\Users\josec\OneDrive\Documentos\GitHub\2526_CL6_Entradas_Analogicas1er\doc\thonnyPloter.png)
+![](./doc/thonnyPloter.png)
 
 ### 3ro Montaje : LDR
 
