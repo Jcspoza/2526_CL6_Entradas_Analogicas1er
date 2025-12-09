@@ -37,9 +37,28 @@ Indice evolutivo del las clases del taller + libros y webs de referencia:
 
 ## Propuesta de estudio : entradas analógicas en micro Controladores
 
+Más que un proyecto para ir construyendo progresivamente, esta Clase #6 será un estudio de las entradas analógicas experimentando con uno o dos sensores, hasta que los conceptos básicos queden claros
+
 ## Materiales y links a información
 
-### Librerías importantes - No necesarias
+Materiales y links a informacion
+
+| Material                                                                                                               | Descripcion                                                                                                                                                      | Kit SF                        |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| [Protoboard 700](https://docs.sunfounder.com/projects/kepler-kit/en/latest/component/component_breadboard.html)        | Placa para prototipos ver apartado [Uso de la protoboard](https://github.com/Jcspoza/2526CL1_R_CircElect0#uso-de-la-protoboard). Mejor usar la protoboard de 700 | SI                            |
+| [Cables dupond M-M](https://docs.sunfounder.com/projects/kepler-kit/en/latest/component/component_wire.html)           | Sirven para hacer conexiones en protoboard                                                                                                                       | SI                            |
+| [Led rojo](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_led.html)                    | Se usara para indicar comienzo de cuenta de Tiempo de reacción                                                                                                   | SI                            |
+| [Resistencia 220 ohm x1](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_resistor.html) | Resistencia 220 ohm para limitar corriente de LED                                                                                                                | SI                            |
+| Potenciómetro                                                                                                          |                                                                                                                                                                  | SI                            |
+| [Resistencia 10k ohm x2](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_resistor.html) | Resistencia de 10 K ohm para pull-Down                                                                                                                           | SI                            |
+| Fotoresitencia o LDR                                                                                                   |                                                                                                                                                                  | SI                            |
+| Modulo de Rele                                                                                                         |                                                                                                                                                                  | SI pero necesita Hw adicional |
+
+### Fotos del montaje final
+
+-- pendiente --
+
+### Librerías importantes - No son necesarias en CL6
 
 ## Aprender / Entender: entradas analógicas en micro Controladores
 
@@ -99,11 +118,15 @@ Vamos a hacer una versión simplificada del tutorial de sunfounder ( sin LED con
 
 [2.12 Feel the Light &mdash; SunFounder Pico 2 W Starter Kit for Raspberry Pi Pico 2 W documentation](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/pyproject/py_photoresistor.html)
 
+codigo propio-Potenciómetro
 
+Conexiones :
 
-codigo propio-Potenciometro
+- el pin central del potenciometro a adc0 = gpio 26
 
+- los otros 2 pines a +3.3 y 0 volt respectivamente
 
+[R2526_CL6_ADC_poten_1_0.py](R2526_CL6_ADC_poten_1_0.py)
 
 #### Truco en Thonny - ploter
 
@@ -117,13 +140,47 @@ Seguiremos el montaje de Sunfounder
 
 [2.12 Feel the Light &mdash; SunFounder Pico 2 W Starter Kit for Raspberry Pi Pico 2 W documentation](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/pyproject/py_photoresistor.html)
 
+#### LDR -1ra versión
 
+Conexiones : el pin central de un divisor de tensión GND - LDR ->adc1< - 10k - vcc
 
-codigo propio-LDR
+ adc1 = gpio 27
 
+[R2526_CL6_ADC_LDR_2_1.py](R2526_CL6_ADC_LDR_2_1.py)
 
+#### LDR -2da versión
+
+Añade a LDR 1ra versión , un Led rojo en GPIO14 cuando luz es poca
+
+[R2526_CL6_ADC_LDR_3_1.py](R2526_CL6_ADC_LDR_3_1.py)
+
+#### LDR_Rele- 3ra Version
+
+Añade a LDR 2da versión , un moduilo de Rele en GPIO15 que responde cuando luz es poca, conectando comun y NO
+
+[R2526_CL6_ADC_LDRrele_4_1.py](R2526_CL6_ADC_LDRrele_4_1.py)
+
+##### Notas HW conexionado de Reles
+
+En mi montaje he usado un modulo de relé que viene con el HW adicional a rele necesario ya incluido, porque disponía de el. 
+
+Si solo se dispone de un relé como es el caso del Kit SF, hay que añadir Hw adiciona . Ver 
+
+[2.16 Control Another Circuit &mdash; SunFounder Pico 2 W Starter Kit for Raspberry Pi Pico 2 W documentation](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/pyproject/py_relay.html)
+
+Explicación:
+
+- El diodo, se llama diodo de fly-back y sirve para 'devolver' las corrientes parasitas que surgen a apagar la bobina del relé 
+
+- El transistor NPN y la resistencia de base de 1k, son un circuito de transistor en corte-saturación, para poder suministrar una corriente suficiente a la bobina del rele ( necesita 120 ma) usando una corriente muy pequeña ( 1 a 2 mA) desde el pin de la PICO w/2W
+
+- Ver [datasheet del rele](SRS--4000-.pdf)
+
+![sch_relay_1](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/_images/sch_control_another_circuit.png)
 
 ### Lista (no completa) de sensores analógicos en robotica
+
+pendiente
 
 ---
 
@@ -131,4 +188,13 @@ codigo propio-LDR
 
 ## Tabla resumen de programas
 
-## TO DO y Notas
+| Programa                                                     | Lenguaje | HW si Robotica y Notas                         | Objetivo de Aprendizaje                             |
+| ------------------------------------------------------------ | -------- | ---------------------------------------------- | --------------------------------------------------- |
+| [R2526_CL6_ADC_poten_1_0.py](R2526_CL6_ADC_poten_1_0.py)     | uPy      | pin central potenciómetro a ADC0               | Entradas analógicas + plotter de thonny             |
+| [R2526_CL6_ADC_LDR_2_1.py](R2526_CL6_ADC_LDR_2_1.py)         | uPy      |                                                |                                                     |
+| [R2526_CL6_ADC_LDR_3_1.py](R2526_CL6_ADC_LDR_3_1.py)         | uPy      | añade un Led rojo en GPIO14 cuando luz es poca |                                                     |
+| [R2526_CL6_ADC_LDRrele_4_1.py](R2526_CL6_ADC_LDRrele_4_1.py) | uPy      | añade un modulo de rele a GPIO15               | Se puede controlar un voltaje de 220 volt con un uC |
+
+---
+
+## TO DO y Nota
