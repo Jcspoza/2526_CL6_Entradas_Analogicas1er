@@ -157,7 +157,7 @@ Añade a LDR 1ra versión , un Led rojo en GPIO14 cuando luz es poca
 
 #### LDR_Rele- 3ra Version
 
-Añade a LDR 2da versión , un moduilo de Rele en GPIO15 que responde cuando luz es poca, conectando comun y NO
+Añade a LDR 2da versión , un moduilo de Rele en GPIO15 que responde cuando luz es poca, conectando comun y NO ( normally open = normalmente abierto)
 
 [R2526_CL6_ADC_LDRrele_4_1.py](R2526_CL6_ADC_LDRrele_4_1.py)
 
@@ -183,9 +183,21 @@ Explicación:
 
 pendiente
 
+| Tutorial principal                                                                                                                                                                     | HW necesario + Link de SF o de compra                                                                                      | Qué se necesita entender                                              | Parámetro físico que traduce | Esta en Kit SF                                   | Referencia de Clase CMM PyR           |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------ | ------------------------------------- |
+| [Potenciómetro](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_potentiometer.html#)                                                                    | Potenciómetro de un valor > 10k                                                                                            | **ADCnPICO** : Conversión ADC en Pico + Divisor de tensión            | Giro                         | SI                                               | 2526_CL6                              |
+| [2.13 Thermometer](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/pyproject/py_temp.html)                                                                                  | [NTC](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_thermistor.html) + resistencia 10K    | **ADCnPICO** + Resistencia de coeficiente negativo                    | **Temperatura**              | SI                                               |                                       |
+| [2.12 Feel the Light](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_photoresistor.html#:~:text=2.12%20Feel%20the%20Light%20(For%20MicroPython%20User) | [LDR](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_photoresistor.html) + resistencia 10K | **ADCnPICO** + Foto-resistencia + Divisor de tensión                  | Nivel de **Luz**             | SI                                               | 2526_CL6                              |
+|                                                                                                                                                                                        |                                                                                                                            | **ADCnPICO** + **BJCnZL** : transistor BJC en zona lineal             | **Humedad** de suelo         | No salvo que sirva el sensor de nivel de humedad | NO                                    |
+| [4.1 Toggle the Joystick](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/pyproject/py_joystick.html#py-joystick)                                                           | [Modulo de Joystick](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_joystick.html)         | **ADCnPICO** + son 2 potenciómetros en posición en cruz y un pulsador | **Mover en 2D**:  X e Y      | SI                                               | clase que dio Fernando en 2024 - 2025 |
+| [2.14 Feel the Water Level](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/pyproject/py_water.html#py-water)                                                               | [Sensor de nivel de agua](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_water.html)       | **ADCnPICO** + **BJCnZL** : transistor BJC en zona lineal             | **Nivel de agua**            |                                                  |                                       |
+|                                                                                                                                                                                        |                                                                                                                            |                                                                       |                              |                                                  |                                       |
+
 ---
 
 ## Proyecto completo: por decidir
+
+Se trata de elegir un sensor analógico u ver un uso útil , o viceversa ver un suso donde se pueda usar un sensor analógico que este fácilmente disponible y no tenga un precio alto.
 
 ## Tabla resumen de programas
 
