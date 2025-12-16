@@ -26,6 +26,8 @@ Indice evolutivo del las clases del taller + libros y webs de referencia:
   - 2do Montaje : Potenciómetro
   
   - 3ro Montaje : LDR
+  
+  - 4to Montaje : 
 
 - Lista (no completa) de sensores analógicos en robotica
 
@@ -155,15 +157,34 @@ Añade a LDR 1ra versión , un Led rojo en GPIO14 cuando luz es poca
 
 [R2526_CL6_ADC_LDR_3_1.py](R2526_CL6_ADC_LDR_3_1.py)
 
+#### TFPS - Sensor de presión de película fina
+
+Ejemplo de como aprovechar el codigo y el montaje HW del LDR para otros sensores analógicos resistivos.
+
+[R2526_CL6_ADC_TFPS_3_1.py](R2526_CL6_ADC_TFPS_3_1.py)
+
 #### LDR_Rele- 3ra Version
 
 Añade a LDR 2da versión , un moduilo de Rele en GPIO15 que responde cuando luz es poca, conectando comun y NO ( normally open = normalmente abierto)
 
 [R2526_CL6_ADC_LDRrele_4_1.py](R2526_CL6_ADC_LDRrele_4_1.py)
 
+#### LDR Relé SSR - 4ta versión
+
+Los reles de estado solido SSR, son una alternativa No mecánica a los reles de bobina. Este que he usado es de lógica negativa 
+: se activa con '0'
+
+Se ha cambiado el progrma de rele 4.1 -> 4.2 para cambiar la logica de activacion
+
+[R2526_CL6_ADC_SSRrele_4_2.py](R2526_CL6_ADC_SSRrele_4_2.py)
+
+
+
+
+
 ##### Notas HW conexionado de Reles
 
-En mi montaje he usado un modulo de relé que viene con el HW adicional a rele necesario ya incluido, porque disponía de el. 
+En mi montaje he usado un modulo de relé (antiguo) que viene con el HW adicional al rele necesario ya incluido, porque disponía de el. 
 
 Si solo se dispone de un relé como es el caso del Kit SF, hay que añadir Hw adiciona . Ver 
 
@@ -197,17 +218,23 @@ pendiente
 
 ## Proyecto completo: por decidir
 
-Se trata de elegir un sensor analógico u ver un uso útil , o viceversa ver un suso donde se pueda usar un sensor analógico que este fácilmente disponible y no tenga un precio alto.
+Se trata de elegir un sensor analógico u ver un uso útil , o viceversa ver un uso donde se pueda usar un sensor analógico que este fácilmente disponible y no tenga un precio alto.
 
 ## Tabla resumen de programas
 
-| Programa                                                     | Lenguaje | HW si Robotica y Notas                         | Objetivo de Aprendizaje                             |
-| ------------------------------------------------------------ | -------- | ---------------------------------------------- | --------------------------------------------------- |
-| [R2526_CL6_ADC_poten_1_0.py](R2526_CL6_ADC_poten_1_0.py)     | uPy      | pin central potenciómetro a ADC0               | Entradas analógicas + plotter de thonny             |
-| [R2526_CL6_ADC_LDR_2_1.py](R2526_CL6_ADC_LDR_2_1.py)         | uPy      |                                                |                                                     |
-| [R2526_CL6_ADC_LDR_3_1.py](R2526_CL6_ADC_LDR_3_1.py)         | uPy      | añade un Led rojo en GPIO14 cuando luz es poca |                                                     |
-| [R2526_CL6_ADC_LDRrele_4_1.py](R2526_CL6_ADC_LDRrele_4_1.py) | uPy      | añade un modulo de rele a GPIO15               | Se puede controlar un voltaje de 220 volt con un uC |
+| Programa                                                     | Lenguaje | HW si Robotica y Notas                                                                                                                                                                    | Objetivo de Aprendizaje                             |
+| ------------------------------------------------------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [R2526_CL6_ADC_poten_1_0.py](R2526_CL6_ADC_poten_1_0.py)     | uPy      | pin central potenciómetro a ADC0                                                                                                                                                          | Entradas analógicas + plotter de thonny             |
+| [R2526_CL6_ADC_LDR_2_1.py](R2526_CL6_ADC_LDR_2_1.py)         | uPy      |                                                                                                                                                                                           |                                                     |
+| [R2526_CL6_ADC_LDR_3_1.py](R2526_CL6_ADC_LDR_3_1.py)         | uPy      | añade un Led rojo en GPIO14 cuando luz es poca                                                                                                                                            |                                                     |
+| [R2526_CL6_ADC_TFPS_3_1.py](R2526_CL6_ADC_TFPS_3_1.py)       | uPy      | Usa el circuito y el programa de LDR, para leer un sensor de presión de pelicula fina                                                                                                     |                                                     |
+| [R2526_CL6_ADC_LDRrele_4_1.py](R2526_CL6_ADC_LDRrele_4_1.py) | uPy      | añade un modulo de rele a GPIO15 / en el kit de SF hay que hacer un montaje con un transistor y un diodo / No deberia funcionar con un voltaje de bobina de menos de 5volt, pero funciona | Se puede controlar un voltaje de 220 volt con un uC |
+| [R2526_CL6_ADC_SSRrele_4_2.py](R2526_CL6_ADC_SSRrele_4_2.py) | uPy      | añade un modulo de **rele de estado solido SSR** a GPIO15, se activa con '0' / no deberia funcionar con un voltaje de 3.3 volt , pero funciona                                            | Se puede controlar un voltaje de 220 volt con un uC |
 
 ---
 
 ## TO DO y Nota
+
+- Todo: Investigar modelos de reles de bobina y SSR que funcionen a 3,3 volt y que incluyan optoacopladores
+
+- Investigar optoacopladores
